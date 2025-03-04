@@ -83,7 +83,6 @@ class AuthRepository(private val apiService: ApiService) {
         )
     }
 
-    // ✅ Properly placed forgotPassword function
     suspend fun forgotPassword(email: String): Response<ForgotPasswordResponse> {
         return apiService.forgotPassword(email)
     }
@@ -94,7 +93,7 @@ class AuthRepository(private val apiService: ApiService) {
         token: String,
         email: String
     ): Response<ResetPasswordResponse> {
-        val processedToken = token.replace("+", "%2B")  // ✅ Ensure proper encoding
+        val processedToken = token.replace("+", "%2B")
         return apiService.resetPassword(password, confirmPassword, processedToken, email)
     }
 
